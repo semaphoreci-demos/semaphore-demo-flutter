@@ -20,12 +20,15 @@ blocks:
   - name: Test IOS
     task:
       jobs:
+        - name: Format code
+          commands:
+            - flutter format --set-exit-if-changed .
         - name: Run code lint
           commands:
-            - flutter analyze
+            - flutter analyze .
         - name: Run unit tests
           commands:
-            - flutter test
+            - flutter test .
       prologue:
         commands:
           - checkout
@@ -46,11 +49,14 @@ blocks:
           os_image: ubuntu1804
         containers:
           - name: main
-            image: 'registry.semaphoreci.com/android:29-flutter'
+            image: "registry.semaphoreci.com/android:29-flutter"
       jobs:
+        - name: Format code
+          commands:
+            - flutter format --set-exit-if-changed .
         - name: Run code lint
           commands:
-            - flutter analyze
+            - flutter analyze .
         - name: Run unit tests
           commands:
-            - flutter test
+            - flutter test .

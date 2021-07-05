@@ -10,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  TodoViewModel todoViewModel = TodoViewModel();
+  final TodoViewModel todoViewModel = TodoViewModel();
 
   @override
   Widget build(BuildContext context) {

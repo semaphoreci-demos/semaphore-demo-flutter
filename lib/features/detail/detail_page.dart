@@ -141,7 +141,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
               widget.type == DetailPageType.edit
                   ? TextButton(
-                    key: ValueKey('button.delete'),
+                      key: ValueKey('button.delete'),
                       child: Text(
                         'Delete',
                         style: TextStyle(
