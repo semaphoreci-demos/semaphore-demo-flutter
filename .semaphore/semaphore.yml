@@ -31,10 +31,6 @@ blocks:
         - name: Run code lint
           commands:
             - flutter analyze .
-      prologue:
-        commands:
-          - checkout
-          - cache restore flutter-packages
   - name: Run unit and widget tests
     dependencies:
       - Format and lint code
