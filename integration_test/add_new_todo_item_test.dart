@@ -7,15 +7,15 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets(
-    "Should display the newly added item in the list",
+    'Should display the newly added item in the list',
     (WidgetTester tester) async {
       // Arrange
       app.main();
       await tester.pumpAndSettle();
-      final addFinder = find.byKey(ValueKey('button.add'));
-      final titleFinder = find.byKey(ValueKey('input.title'));
-      final descriptionFinder = find.byKey(ValueKey('input.description'));
-      final saveFinder = find.byKey(ValueKey('button.save'));
+      final addFinder = find.byKey(const ValueKey('button.add'));
+      final titleFinder = find.byKey(const ValueKey('input.title'));
+      final descriptionFinder = find.byKey(const ValueKey('input.description'));
+      final saveFinder = find.byKey(const ValueKey('button.save'));
 
       // Act
       await tester.tap(addFinder);

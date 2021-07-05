@@ -70,8 +70,9 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   void dispose() {
-    _detailViewModel.title = '';
-    _detailViewModel.description = '';
+    _detailViewModel
+      ..title = ''
+      ..description = '';
     _titleController.dispose();
     _descriptionController.dispose();
     super.dispose();
@@ -99,14 +100,14 @@ class _DetailPageState extends State<DetailPage> {
           child: Column(
             children: [
               TextField(
-                key: ValueKey('input.title'),
+                key: const ValueKey('input.title'),
                 controller: _titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Title',
                   labelText: 'Title',
-                  border: const OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(10.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
                     ),
                   ),
                 ),
@@ -117,12 +118,12 @@ class _DetailPageState extends State<DetailPage> {
                   key: ValueKey('input.description'),
                   controller: _descriptionController,
                   maxLines: 3,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Description',
                     labelText: 'Description',
-                    border: const OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        const Radius.circular(10.0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
                       ),
                     ),
                   ),
@@ -133,15 +134,17 @@ class _DetailPageState extends State<DetailPage> {
                 child: Selector<DetailViewModel, bool>(
                   selector: (_, vm) => vm.isSavingAllowed,
                   builder: (_, isSaving, __) => TextButton(
-                    key: ValueKey('button.save'),
-                    child: Text(_detailViewModel.saveLabel),
+                    key: const ValueKey('button.save'),
+                    child: Text(
+                      _detailViewModel.saveLabel,
+                    ),
                     onPressed: isSaving ? _saveItem : null,
                   ),
                 ),
               ),
               widget.type == DetailPageType.edit
                   ? TextButton(
-                      key: ValueKey('button.delete'),
+                      key: const ValueKey('button.delete'),
                       child: Text(
                         'Delete',
                         style: TextStyle(

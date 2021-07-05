@@ -6,6 +6,7 @@ import 'package:semaphoreci_flutter_demo/features/home/home_viewmodel.dart';
 import 'package:semaphoreci_flutter_demo/models/todo_item.dart';
 import 'package:semaphoreci_flutter_demo/viewmodels/todo_viewmodel.dart';
 
+// ignore_for_file: cascade_invocations
 void main() {
   testWidgets(
     'Should display the items in the list',
@@ -43,7 +44,7 @@ void main() {
         ),
       );
 
-      todoViewModel.addItemToList(item);
+      todoViewModel.addItemToList(item);      
       todoViewModel.addItemToList(item);
       todoViewModel.addItemToList(item);
 

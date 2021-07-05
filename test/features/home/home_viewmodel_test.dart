@@ -6,7 +6,7 @@ import 'package:semaphoreci_flutter_demo/viewmodels/todo_viewmodel.dart';
 void main() {
   test('Should show empty list if TodoViewModel is null ', () {
     // Arrange
-    final todoViewModel = null;
+    const todoViewModel = null;
     final homeViewModel = HomeViewModel(
       todoViewModel: todoViewModel,
     );

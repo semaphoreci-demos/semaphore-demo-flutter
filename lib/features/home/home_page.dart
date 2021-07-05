@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:semaphoreci_flutter_demo/features/detail/detail_page.dart';
 import 'package:semaphoreci_flutter_demo/features/home/home_viewmodel.dart';
 
+// ignore: use_key_in_widget_constructors
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -28,17 +29,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'SemaphoreCI Flutter Demo',
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        key: ValueKey('button.add'),
+        key: const ValueKey('button.add'),
         onPressed: () {
           Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (_) => DetailPage(
+              builder: (_) => const DetailPage(
                 type: DetailPageType.add,
               ),
             ),
@@ -57,11 +58,11 @@ class _HomePageState extends State<HomePage> {
                 bottom: 24,
               ),
               child: const TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: 'Search',
-                  border: const OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(10.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
                     ),
                   ),
                 ),

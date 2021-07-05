@@ -3,6 +3,7 @@ import 'package:semaphoreci_flutter_demo/features/detail/detail_page.dart';
 import 'package:semaphoreci_flutter_demo/features/detail/detail_viewmodel.dart';
 import 'package:semaphoreci_flutter_demo/viewmodels/todo_viewmodel.dart';
 
+// ignore_for_file: cascade_invocations
 void main() {
   test('Should show Save CTA when adding new item', () {
     // Arrange
@@ -48,9 +49,7 @@ void main() {
     expect(detailViewModel.description, 'This is the new description');
   });
 
-  test(
-      'Should not allow to save an item when there is no entered title and description',
-      () {
+  test('Should not allow to proceed when entered title and desc is empty', () {
     // Arrange
     final todoViewModel = TodoViewModel();
     final detailViewModel = DetailViewModel(
