@@ -31,20 +31,14 @@ blocks:
         - name: Run code lint
           commands:
             - flutter analyze .
-  - name: Run code lint
-    dependencies:
-      - Run format code
-    task:
-      jobs:
-        
   - name: Run unit and widget tests
     dependencies:
       - Format and lint code
-    prologue:
-      commands:
-        - checkout
-        - flutter pub get
     task:
+      prologue:
+        commands:
+          - checkout
+          - flutter pub get
       jobs:
         - name: Run unit and widget tests
           commands:
@@ -52,11 +46,12 @@ blocks:
   - name: Run integration tests on Android
     dependencies:
       - Run unit and widget tests
-    prologue:
-      commands:
-        - checkout
-        - flutter pub get
+  
     task:
+      prologue:
+        commands:
+          - checkout
+          - flutter pub get
       jobs:
         - name: Run unit and widget tests
           commands:
