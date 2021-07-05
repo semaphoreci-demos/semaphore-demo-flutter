@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:semaphoreci_flutter_demo/features/detail/detail_page.dart';
 import 'package:semaphoreci_flutter_demo/features/home/home_viewmodel.dart';
-import 'package:semaphoreci_flutter_demo/models/todo_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
