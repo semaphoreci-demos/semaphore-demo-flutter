@@ -53,7 +53,7 @@ blocks:
           - checkout
           - flutter pub get
       jobs:
-        - name: Run unit and widget tests
+        - name: Run integration tests
           commands:
             - sdkmanager "platform-tools" "platforms;android-29" "build-tools;30.0.0" "emulator"
             - sdkmanager "system-images;android-29;google_apis;x86"
@@ -65,6 +65,6 @@ blocks:
             - adb shell settings put global window_animation_scale 0
             - adb shell settings put global transition_animation_scale 0
             - adb shell settings put global animator_duration_scale 0
-            - flutter drive --driver=test_driver/integration_test.dart --target=integration_test/add_new_todo_item_test.dart
-            - flutter drive --driver=test_driver/integration_test.dart --target=integration_test/edit_existing_item_test.dart
-            - flutter drive --driver=test_driver/integration_test.dart --target=integration_test/delete_existing_item_test.dart
+            - flutter test integration_test/add_new_todo_item_test.dart
+            - flutter test integration_test/edit_existing_item_test.dart
+            - flutter test integration_test/delete_existing_item_test.dart
