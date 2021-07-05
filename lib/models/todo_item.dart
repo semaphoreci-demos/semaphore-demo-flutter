@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs
-// ignore_for_file: sort_constructors_first
 class TodoItem {
   final int id;
   final String title;

@@ -3,7 +3,6 @@ import 'package:semaphoreci_flutter_demo/features/detail/detail_page.dart';
 import 'package:semaphoreci_flutter_demo/features/detail/detail_viewmodel.dart';
 import 'package:semaphoreci_flutter_demo/viewmodels/todo_viewmodel.dart';
 
-// ignore_for_file: cascade_invocations
 void main() {
   test('Should show Save CTA when adding new item', () {
     // Arrange

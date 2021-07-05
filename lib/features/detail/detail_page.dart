@@ -92,7 +92,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Todo'),
+        title: const Text('Add Todo'),
       ),
       body: SafeArea(
         child: Container(
@@ -115,7 +115,7 @@ class _DetailPageState extends State<DetailPage> {
               Container(
                 margin: const EdgeInsets.only(top: 24),
                 child: TextField(
-                  key: ValueKey('input.description'),
+                  key: const ValueKey('input.description'),
                   controller: _descriptionController,
                   maxLines: 3,
                   decoration: const InputDecoration(
@@ -145,7 +145,7 @@ class _DetailPageState extends State<DetailPage> {
               widget.type == DetailPageType.edit
                   ? TextButton(
                       key: const ValueKey('button.delete'),
-                      child: Text(
+                      child: const Text(
                         'Delete',
                         style: TextStyle(
                           color: Colors.red,

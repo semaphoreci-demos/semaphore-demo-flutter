@@ -7,7 +7,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets(
-    "Should remove the deleted item from the list",
+    'Should remove the deleted item from the list',
     (WidgetTester tester) async {
       // Arrange
       app.main();

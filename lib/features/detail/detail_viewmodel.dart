@@ -3,6 +3,7 @@ import 'package:semaphoreci_flutter_demo/features/detail/detail_page.dart';
 import 'package:semaphoreci_flutter_demo/models/todo_item.dart';
 import 'package:semaphoreci_flutter_demo/viewmodels/todo_viewmodel.dart';
 
+// ignore_for_file: public_member_api_docs
 class DetailViewModel extends ChangeNotifier {
   DetailViewModel({
     required this.todoViewModel,
@@ -35,7 +36,7 @@ class DetailViewModel extends ChangeNotifier {
   }
 
   void setItemEditing(TodoItem item) {
-    this.itemEditing = item;
+    itemEditing = item;
     if (!_isDisposed) notifyListeners();
   }
 

@@ -9,25 +9,26 @@ void main() {
   runApp(MyApp());
 }
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
-  final TodoViewModel todoViewModel = TodoViewModel();
+  final _todoViewModel = TodoViewModel();
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => todoViewModel,
+          create: (_) => _todoViewModel,
         ),
         ChangeNotifierProxyProvider<TodoViewModel, HomeViewModel>(
           create: (_) => HomeViewModel(
-            todoViewModel: todoViewModel,
+            todoViewModel: _todoViewModel,
           ),
           update: (_, todo, __) => HomeViewModel(todoViewModel: todo),
         ),
         ChangeNotifierProxyProvider<TodoViewModel, DetailViewModel>(
           create: (_) => DetailViewModel(
-            todoViewModel: todoViewModel,
+            todoViewModel: _todoViewModel,
           ),
           update: (_, todo, __) => DetailViewModel(todoViewModel: todo),
         ),
