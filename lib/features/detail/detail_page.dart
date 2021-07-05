@@ -56,7 +56,7 @@ class _DetailPageState extends State<DetailPage> {
       switch (widget.type) {
         case DetailPageType.edit:
           _detailViewModel.setItemEditing(widget.item!);
-          
+
           _titleController.text = widget.item!.title;
           _descriptionController.text = widget.item!.description;
           break;
@@ -99,6 +99,7 @@ class _DetailPageState extends State<DetailPage> {
           child: Column(
             children: [
               TextField(
+                key: ValueKey('input.title'),
                 controller: _titleController,
                 decoration: InputDecoration(
                   hintText: 'Title',
@@ -113,6 +114,7 @@ class _DetailPageState extends State<DetailPage> {
               Container(
                 margin: const EdgeInsets.only(top: 24),
                 child: TextField(
+                  key: ValueKey('input.description'),
                   controller: _descriptionController,
                   maxLines: 3,
                   decoration: InputDecoration(
@@ -131,6 +133,7 @@ class _DetailPageState extends State<DetailPage> {
                 child: Selector<DetailViewModel, bool>(
                   selector: (_, vm) => vm.isSavingAllowed,
                   builder: (_, isSaving, __) => TextButton(
+                    key: ValueKey('button.save'),
                     child: Text(_detailViewModel.saveLabel),
                     onPressed: isSaving ? _saveItem : null,
                   ),

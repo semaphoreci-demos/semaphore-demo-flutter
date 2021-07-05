@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: ValueKey('button.add'),
         onPressed: () {
           Navigator.push(
             context,
