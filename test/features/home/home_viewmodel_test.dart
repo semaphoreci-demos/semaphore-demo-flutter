@@ -12,6 +12,7 @@ void main() {
     );
 
     // Act
+    // Do nothing
 
     // Assert
     expect(homeViewModel.todos.length, 0);
@@ -32,7 +33,9 @@ void main() {
     );
 
     // Act
-    todoViewModel.todos = [item, item, item];
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(item);
 
     // Assert
     expect(homeViewModel.todos.length, 3);
