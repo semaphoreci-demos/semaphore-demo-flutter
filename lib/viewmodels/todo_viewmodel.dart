@@ -20,7 +20,7 @@ class TodoViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteAllItems(String id) {
+  void deleteAllItems() {
     todos.clear();
     notifyListeners();
   }

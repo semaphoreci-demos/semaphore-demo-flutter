@@ -69,4 +69,53 @@ void main() {
     expect(todoViewModel.todos[2].title, 'Title New');
     expect(todoViewModel.todos[2].description, 'Description New');
   });
+
+  test('Should delete one item by id from the list', () {
+    // Arrange
+    final todoViewModel = TodoViewModel();
+    final item = TodoItem(
+      id: 1,
+      title: 'Title',
+      description: 'Description',
+      createdAt: 1,
+      updatedAt: 1,
+    );
+    final itemToDelete = TodoItem(
+      id: 2,
+      title: 'Title Deleted',
+      description: 'Description Deleted',
+      createdAt: 1,
+      updatedAt: 1,
+    );
+
+    // Act
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(itemToDelete);
+    todoViewModel.deleteItemById(itemToDelete.id);
+
+    // Assert
+    expect(todoViewModel.todos.length, 2);
+  });
+
+  test('Should delete all items from the list', () {
+    // Arrange
+    final todoViewModel = TodoViewModel();
+    final item = TodoItem(
+      id: 1,
+      title: 'Title',
+      description: 'Description',
+      createdAt: 1,
+      updatedAt: 1,
+    );
+
+    // Act
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(item);
+    todoViewModel.addItemToList(item);
+    todoViewModel.deleteAllItems();
+
+    // Assert
+    expect(todoViewModel.todos.length, 0);
+  });
 }
