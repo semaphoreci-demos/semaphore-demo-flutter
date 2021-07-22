@@ -19,8 +19,8 @@ void main() {
     final todoViewModel = TodoViewModel();
     final item = TodoItem(
       id: 1,
-      title: 'Title',
-      description: 'Description',
+      title: 'Buy groceries',
+      description: 'Go to the mall and shop for next month’s stock.',
       createdAt: 1,
       updatedAt: 1,
     );
@@ -39,22 +39,22 @@ void main() {
     final todoViewModel = TodoViewModel();
     final item = TodoItem(
       id: 1,
-      title: 'Title',
-      description: 'Description',
+      title: 'Buy groceries',
+      description: 'Go to the mall and shop for next month’s stock.',
       createdAt: 1,
       updatedAt: 1,
     );
     final item2Old = TodoItem(
       id: 2,
-      title: 'Title Old',
-      description: 'Description Old',
+      title: 'Buy groceries old',
+      description: 'Go to the mall and shop for next month’s stock old.',
       createdAt: 1,
       updatedAt: 1,
     );
     final item2New = TodoItem(
       id: 2,
-      title: 'Title New',
-      description: 'Description New',
+      title: 'Buy groceries new',
+      description: 'Go to the mall and shop for next month’s stock new.',
       createdAt: 1,
       updatedAt: 1,
     );
@@ -75,15 +75,15 @@ void main() {
     final todoViewModel = TodoViewModel();
     final item = TodoItem(
       id: 1,
-      title: 'Title',
-      description: 'Description',
+      title: 'Buy groceries',
+      description: 'Go to the mall and shop for next month’s stock.',
       createdAt: 1,
       updatedAt: 1,
     );
     final itemToDelete = TodoItem(
       id: 2,
-      title: 'Title Deleted',
-      description: 'Description Deleted',
+      title: 'Buy groceries deleted',
+      description: 'Go to the mall and shop for next month’s stock deleted.',
       createdAt: 1,
       updatedAt: 1,
     );
@@ -103,8 +103,8 @@ void main() {
     final todoViewModel = TodoViewModel();
     final item = TodoItem(
       id: 1,
-      title: 'Title',
-      description: 'Description',
+      title: 'Buy groceries',
+      description: 'Go to the mall and shop for next month’s stock.',
       createdAt: 1,
       updatedAt: 1,
     );

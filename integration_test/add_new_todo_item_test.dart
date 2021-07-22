@@ -21,18 +21,24 @@ void main() {
       await tester.tap(addFinder);
       await tester.pumpAndSettle();
 
-      await tester.enterText(titleFinder, 'This is a title');
+      await tester.enterText(titleFinder, 'Buy groceries');
       await tester.pumpAndSettle();
 
-      await tester.enterText(descriptionFinder, 'This is a description');
+      await tester.enterText(
+        descriptionFinder,
+        'Go to the mall and shop for next month’s stock.',
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(saveFinder);
       await tester.pumpAndSettle();
 
       // Assert
-      expect(find.text('This is a title'), findsOneWidget);
-      expect(find.text('This is a description'), findsOneWidget);
+      expect(find.text('Buy groceries'), findsOneWidget);
+      expect(
+        find.text('Go to the mall and shop for next month’s stock.'),
+        findsOneWidget,
+      );
     },
   );
 }

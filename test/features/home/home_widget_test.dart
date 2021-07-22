@@ -15,12 +15,12 @@ void main() {
       final todoViewModel = TodoViewModel();
       final item = TodoItem(
         id: 1,
-        title: 'Title',
-        description: 'Description',
+        title: 'Buy groceries',
+        description: 'Go to the mall and shop for next month’s stock.',
         createdAt: 1,
         updatedAt: 1,
       );
-      final titleFinder = find.text('Title');
+      final titleFinder = find.text('Buy groceries');
       final typeFinder = find.byType(ListTile);
 
       // Act
