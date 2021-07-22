@@ -21,10 +21,13 @@ void main() {
       await tester.tap(addFinder);
       await tester.pumpAndSettle();
 
-      await tester.enterText(titleFinder, 'This is a title');
+      await tester.enterText(titleFinder, 'Buy groceries');
       await tester.pumpAndSettle();
 
-      await tester.enterText(descriptionFinder, 'This is a description');
+      await tester.enterText(
+        descriptionFinder,
+        'Go to the mall and shop for next month’s stock.',
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(saveFinder);
