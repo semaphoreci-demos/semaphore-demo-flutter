@@ -34,8 +34,11 @@ void main() {
       await tester.pumpAndSettle();
 
       // Assert
-      expect(find.text('This is a title'), findsOneWidget);
-      expect(find.text('This is a description'), findsOneWidget);
+      expect(find.text('Buy groceries'), findsOneWidget);
+      expect(
+        find.text('Go to the mall and shop for next month’s stock.'),
+        findsOneWidget,
+      );
     },
   );
 }
