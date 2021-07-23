@@ -66,8 +66,11 @@ void main() {
     todoViewModel.updateItem(item2New);
 
     // Assert
-    expect(todoViewModel.todos[2].title, 'Title New');
-    expect(todoViewModel.todos[2].description, 'Description New');
+    expect(todoViewModel.todos[2].title, 'Buy groceries new');
+    expect(
+      todoViewModel.todos[2].description,
+      'Go to the mall and shop for next month’s stock new.',
+    );
   });
 
   test('Should delete one item by id from the list', () {
