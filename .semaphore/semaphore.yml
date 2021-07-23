@@ -1,28 +1,22 @@
 version: v1.0
-name: SemaphoreCI Flutter Demo
+name: Initial Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
   containers:
     - name: main
-      image: "registry.semaphoreci.com/android:30-flutter"
+      image: 'registry.semaphoreci.com/android:30-flutter'
 blocks:
-  - name: Cache deps
+  - name: Install dependencies
     task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
       jobs:
-        - name: Cache deps
+        - name: Install
           commands:
             - checkout
             - flutter pub get
             - cache store flutter-packages .packages
-    dependencies: []
-  - name: Format and lint code
-    dependencies:
-      - Cache deps
+  - name: Linting
     task:
       jobs:
         - name: Format code
@@ -31,27 +25,18 @@ blocks:
         - name: Run code lint
           commands:
             - flutter analyze .
-  - name: Run unit and widget tests
-    dependencies:
-      - Format and lint code
+  - name: Tests
     task:
-      prologue:
-        commands:
-          - checkout
-          - flutter pub get
       jobs:
         - name: Run unit and widget tests
           commands:
-            - flutter test test
-  - name: Run integration tests on Android
-    dependencies:
-      - Run unit and widget tests
-  
-    task:
+            - 'flutter test test '
       prologue:
         commands:
           - checkout
           - flutter pub get
+  - name: Integration Tests
+    task:
       jobs:
         - name: Run integration tests
           commands:
@@ -59,7 +44,7 @@ blocks:
             - sdkmanager "system-images;android-29;google_apis;x86"
             - echo no | avdmanager create avd -n test-emulator -k "system-images;android-29;google_apis;x86"
             - emulator -avd test-emulator -noaudio -no-boot-anim -gpu off -no-window &
-            - adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+            - 'adb wait-for-device shell ''while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'''
             - adb shell wm dismiss-keyguard
             - sleep 1
             - adb shell settings put global window_animation_scale 0
@@ -68,3 +53,7 @@ blocks:
             - flutter test integration_test/add_new_todo_item_test.dart
             - flutter test integration_test/edit_existing_item_test.dart
             - flutter test integration_test/delete_existing_item_test.dart
+      prologue:
+        commands:
+          - checkout
+          - flutter pub get
