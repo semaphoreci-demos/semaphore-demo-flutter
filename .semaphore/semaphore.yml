@@ -14,8 +14,10 @@ blocks:
         - name: Install
           commands:
             - checkout
+            - cache restore
             - flutter pub get
-            - cache store flutter-packages .packages
+            - '# cache store flutter-packages .packages'
+            - 'cache store '
   - name: Linting
     task:
       jobs:
