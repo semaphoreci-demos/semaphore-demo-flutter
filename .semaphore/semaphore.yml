@@ -14,10 +14,9 @@ blocks:
         - name: Install
           commands:
             - checkout
-            - cache restore
-            - flutter pub get
-            - '# cache store flutter-packages .packages'
-            - cache store
+            - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+            - flutter pub get flutter-packages
+            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages .packages'
   - name: Linting
     task:
       jobs:
@@ -27,6 +26,10 @@ blocks:
         - name: Run code lint
           commands:
             - flutter analyze .
+      prologue:
+        commands:
+          - checkout
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
   - name: Tests
     task:
       jobs:
@@ -36,7 +39,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - flutter pub get
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
   - name: Integration Tests
     task:
       jobs:
@@ -58,4 +61,4 @@ blocks:
       prologue:
         commands:
           - checkout
-          - flutter pub get
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
