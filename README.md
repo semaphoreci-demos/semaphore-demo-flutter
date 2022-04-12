@@ -25,7 +25,7 @@ flutter doctor -v
 2. Clone the project
 
 ```
-git clone https://github.com/joshuamdeguzman/semaphoreci_flutter_demo
+git clone https://github.com/semaphoreci-demos/semaphore-demo-flutter2
 ```
 
 3. Install dependencies
