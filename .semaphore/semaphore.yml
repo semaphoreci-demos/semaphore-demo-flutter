@@ -16,7 +16,7 @@ blocks:
             - checkout
             - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
             - flutter pub get
-            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages /root/.pub-cache'
+            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
       prologue:
         commands:
           - checkout
@@ -67,7 +67,7 @@ blocks:
           commands:
             - flutter test integration_test/delete_existing_item_test.dart
     run:
-      when: 'change_in(''/lib'', {default_branch: ''main'', pipeline_file: ''ignore''}))'
+      when: 'change_in(''/lib'', {default_branch: ''main'', pipeline_file: ''ignore''})'
   - name: Build artifact
     task:
       prologue:
