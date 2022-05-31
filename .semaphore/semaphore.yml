@@ -1,68 +1,82 @@
 version: v1.0
-name: Initial Pipeline
+name: Main
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu1804
-  containers:
-    - name: main
-      image: 'registry.semaphoreci.com/android:30-flutter'
+    type: a1-standard-4
+    os_image: macos-xcode13
+fail_fast:
+  stop:
+    when: 'true'
 blocks:
   - name: Install dependencies
     task:
       jobs:
-        - name: Install
+        - name: Install and cache flutter
           commands:
             - checkout
             - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
-            - flutter pub get flutter-packages
-            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages /root/.pub-cache'
-  - name: Linting
+            - flutter pub get
+            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+      prologue:
+        commands:
+          - checkout
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+          - flutter pub get
+  - name: Lint
     task:
+      prologue:
+        commands:
+          - checkout
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+          - flutter pub get
       jobs:
-        - name: Format code
+        - name: Format
           commands:
             - flutter format --set-exit-if-changed .
-        - name: Run code lint
+        - name: Analyze
           commands:
             - flutter analyze .
+  - name: Unit and widget tests
+    task:
       prologue:
         commands:
           - checkout
           - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
-  - name: Tests
-    task:
+          - flutter pub get
       jobs:
-        - name: Run unit and widget tests
+        - name: Test
           commands:
-            - 'flutter test test '
+            - flutter test test
+  - name: Run UI tests
+    task:
       prologue:
         commands:
           - checkout
           - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
-  - name: Integration Tests
-    task:
+          - flutter pub get
+          - device_uuid=$(xcrun simctl create ios-simulator com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro com.apple.CoreSimulator.SimRuntime.iOS-14-5)
+          - xcrun simctl boot $device_uuid
       jobs:
-        - name: Add New Item Test
+        - name: Add new item
           commands:
             - flutter test integration_test/add_new_todo_item_test.dart
-        - name: Edit Existing Item Test
+        - name: Edit exist item
           commands:
             - flutter test integration_test/edit_existing_item_test.dart
-        - name: Delete Existing Item Test
+        - name: Delete item
           commands:
             - flutter test integration_test/delete_existing_item_test.dart
+    run:
+      when: 'change_in(''/lib'', {default_branch: ''main'', pipeline_file: ''ignore''})'
+  - name: Build artifact
+    task:
       prologue:
         commands:
           - checkout
           - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
-          - sdkmanager "platform-tools" "platforms;android-29" "build-tools;30.0.0" "emulator"
-          - sdkmanager "system-images;android-29;google_apis;x86"
-          - echo no | avdmanager create avd -n test-emulator -k "system-images;android-29;google_apis;x86"
-          - emulator -avd test-emulator -noaudio -no-boot-anim -gpu off -no-window &
-          - 'adb wait-for-device shell ''while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'''
-          - adb shell wm dismiss-keyguard
-          - sleep 1
-          - adb shell settings put global window_animation_scale 0
-          - adb shell settings put global transition_animation_scale 0
-          - adb shell settings put global animator_duration_scale 0
+          - flutter pub get
+      jobs:
+        - name: Generate IPA
+          commands:
+            - flutter build ios --no-codesign
+            - artifact push job build/ios/iphoneos/Runner.app
