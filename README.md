@@ -73,7 +73,7 @@ The example pipeline contains 4 blocks.
 
 ## License
 
-Copyright (c) 2021 Rendered Text
+Copyright (c) 2022 Rendered Text
 
 Distributed under the MIT License. See the file LICENSE.
 
