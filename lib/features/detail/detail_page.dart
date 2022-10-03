@@ -54,7 +54,7 @@ class _DetailPageState extends State<DetailPage> {
     );
     _detailViewModel.setDetailType(widget.type);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       switch (widget.type) {
         case DetailPageType.edit:
           _detailViewModel.setItemEditing(widget.item!);

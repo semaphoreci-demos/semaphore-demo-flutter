@@ -11,16 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.5
+  provider: ^6.0.3
 
-  cupertino_icons: ^1.0.2
-  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
-  very_good_analysis: ^2.1.0
+  very_good_analysis: ^3.0.2
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
