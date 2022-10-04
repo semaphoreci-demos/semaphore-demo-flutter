@@ -17,3 +17,16 @@ blocks:
             - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
             - flutter pub get
             - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages /root/.pub-cache'
+  - name: Linting
+    task:
+      prologue:
+        commands:
+          - checkout
+          - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+      jobs:
+        - name: Format code
+          commands:
+            - flutter format --set-exit-if-changed .
+        - name: Run code lint
+          commands:
+            - flutter analyze .
