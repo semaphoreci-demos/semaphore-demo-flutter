@@ -54,15 +54,12 @@ class _DetailPageState extends State<DetailPage> {
     );
     _detailViewModel.setDetailType(widget.type);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      switch (widget.type) {
-        case DetailPageType.edit:
-          _detailViewModel.setItemEditing(widget.item!);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.type == DetailPageType.edit) {
+        _detailViewModel.setItemEditing(widget.item!);
 
-          _titleController.text = widget.item!.title;
-          _descriptionController.text = widget.item!.description;
-          break;
-        default:
+        _titleController.text = widget.item!.title;
+        _descriptionController.text = widget.item!.description;
         // Do nothing
       }
     });
@@ -109,7 +106,7 @@ class _DetailPageState extends State<DetailPage> {
                   labelText: 'Title',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
+                      Radius.circular(10),
                     ),
                   ),
                 ),
@@ -125,7 +122,7 @@ class _DetailPageState extends State<DetailPage> {
                     labelText: 'Description',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
+                        Radius.circular(10),
                       ),
                     ),
                   ),
@@ -144,18 +141,19 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
               ),
-              widget.type == DetailPageType.edit
-                  ? TextButton(
-                      key: const ValueKey('button.delete'),
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(
-                          color: Colors.red,
-                        ),
-                      ),
-                      onPressed: _deleteItem,
-                    )
-                  : Container(),
+              if (widget.type == DetailPageType.edit)
+                TextButton(
+                  key: const ValueKey('button.delete'),
+                  child: const Text(
+                    'Delete',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                  onPressed: _deleteItem,
+                )
+              else
+                Container(),
             ],
           ),
         ),

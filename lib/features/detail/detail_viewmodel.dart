@@ -9,7 +9,7 @@ class DetailViewModel extends ChangeNotifier {
     required this.todoViewModel,
   });
 
-  final TodoViewModel? todoViewModel;
+  final TodoViewModel todoViewModel;
 
   DetailPageType type = DetailPageType.add;
 
@@ -57,7 +57,7 @@ class DetailViewModel extends ChangeNotifier {
           updatedAt: timestamp,
         );
 
-        todoViewModel?.addItemToList(item);
+        todoViewModel.addItemToList(item);
         break;
       case DetailPageType.edit:
         final item = TodoItem(
@@ -68,12 +68,12 @@ class DetailViewModel extends ChangeNotifier {
           updatedAt: timestamp,
         );
 
-        todoViewModel?.updateItem(item);
+        todoViewModel.updateItem(item);
         break;
     }
   }
 
-  void deleteItemById(int id) => todoViewModel?.deleteItemById(id);
+  void deleteItemById(int id) => todoViewModel.deleteItemById(id);
 
   void reset() {
     type = DetailPageType.add;
