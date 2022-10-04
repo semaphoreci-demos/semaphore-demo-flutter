@@ -64,3 +64,10 @@ blocks:
         - name: Delete existing item test
           commands:
             - flutter test integration_test/delete_existing_item_test.dart
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu2004
+        containers:
+          - name: main
+            image: 'registry.semaphoreci.com/android:30-flutter'
