@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            CupertinoPageRoute(
+            CupertinoPageRoute<DetailPage>(
               builder: (_) => const DetailPage(
                 type: DetailPageType.add,
               ),
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   hintText: 'Search',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
+                      Radius.circular(10),
                     ),
                   ),
                 ),
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(
+                        CupertinoPageRoute<DetailPage>(
                           builder: (_) => DetailPage(
                             type: DetailPageType.edit,
                             item: data.todos[i],

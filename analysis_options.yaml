@@ -7,3 +7,5 @@ linter:
     sort_constructors_first: false
     use_key_in_widget_constructors: false
     public_member_api_docs: false
+    sort_pub_dependencies: false
+    use_setters_to_change_properties: false
