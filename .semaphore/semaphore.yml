@@ -1,0 +1,19 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+  containers:
+    - name: main
+      image: 'registry.semaphoreci.com/android:30-flutte'
+blocks:
+  - name: install dependencies
+    task:
+      jobs:
+        - name: Install
+          commands:
+            - checkout
+            - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+            - flutter pub get
+            - 'cache store flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages /root/.pub-cache'
